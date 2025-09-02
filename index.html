@@ -4,53 +4,120 @@
   <meta charset="UTF-8">
   <title>The Dining Room - Press Kit</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&display=swap');
+
     body {
-      font-family: 'Inter', 'Noto Sans KR', sans-serif;
       margin: 0;
-      background: #f9f9f9;
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(180deg, #fff7e6, #ffe9ec, #e6faff);
       color: #333;
-      line-height: 1.6;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /* 게임 오브젝트 배경 */
+    .objects {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .object {
+      position: absolute;
+      bottom: -100px;
+      font-size: 3rem;
+      animation: rise 15s infinite ease-in;
+      opacity: 0.8;
+    }
+    .object:nth-child(1) { left: 10%; animation-duration: 14s; }
+    .object:nth-child(2) { left: 30%; animation-duration: 18s; animation-delay: 3s; }
+    .object:nth-child(3) { left: 50%; animation-duration: 12s; animation-delay: 5s; }
+    .object:nth-child(4) { left: 70%; animation-duration: 20s; animation-delay: 7s; }
+    .object:nth-child(5) { left: 85%; animation-duration: 16s; animation-delay: 2s; }
+
+    @keyframes rise {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      20% { opacity: 1; }
+      100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* 상단 네비 */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(6px);
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+    nav a {
+      font-family: 'Fredoka One', cursive;
+      color: #ff6b6b;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: transform 0.2s, color 0.2s;
+    }
+    nav a:hover {
+      color: #ffa600;
+      transform: scale(1.1);
     }
 
     .container {
       max-width: 900px;
-      margin: auto;
-      padding: 2rem;
+      margin: 0 auto;
+      padding: 6rem 1.5rem 2rem;
     }
 
     header {
       text-align: center;
       padding: 4rem 2rem 2rem;
+      animation: float 3s ease-in-out infinite;
     }
     header img {
-      max-width: 250px;
+      max-width: 200px;
       margin-bottom: 1rem;
     }
     header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-      color: #222;
+      font-family: 'Fredoka One', cursive;
+      font-size: 3rem;
+      color: #ff6b6b;
+      margin: 0.5rem 0;
     }
     header p {
       font-size: 1.2rem;
-      color: #666;
+      color: #555;
     }
 
     section {
       margin: 3rem 0;
+      background: #fff;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+      animation: popIn 0.6s ease;
+      scroll-margin-top: 80px; /* 네비에 가리지 않도록 */
     }
     section h1 {
+      font-family: 'Fredoka One', cursive;
       font-size: 1.8rem;
-      border-left: 4px solid #0078ff;
-      padding-left: 0.75rem;
+      color: #ff6b6b;
       margin-bottom: 1rem;
     }
 
     video, audio, img {
       max-width: 100%;
-      border-radius: 8px;
+      border-radius: 12px;
       margin: 1rem 0;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
 
     ul {
@@ -62,53 +129,85 @@
     }
 
     blockquote {
-      background: #f0f4ff;
-      border-left: 4px solid #0078ff;
+      background: #fff7f0;
+      border-left: 6px solid #ffa600;
       margin: 0.5rem 0;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
       color: #444;
+      font-style: italic;
     }
 
     .btn {
       display: inline-block;
-      padding: 0.75rem 1.25rem;
-      border-radius: 8px;
-      background: #0078ff;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      background: linear-gradient(90deg, #ff6b6b, #ffa600);
       color: #fff;
       text-decoration: none;
-      font-weight: 500;
-      transition: background 0.2s;
+      font-weight: 700;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
     .btn:hover {
-      background: #005fcc;
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(255, 107, 107, 0.5);
     }
 
     hr {
       margin: 3rem 0;
       border: none;
-      border-top: 1px solid #ddd;
+      border-top: 2px dashed #ffc6c6;
+    }
+
+    /* 애니메이션 */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <!-- 햄버거/감튀/콜라 오브젝트 배경 -->
+  <div class="objects">
+    <div class="object">🍔</div>
+    <div class="object">🍟</div>
+    <div class="object">🥤</div>
+    <div class="object">🍔</div>
+    <div class="object">🍟</div>
+  </div>
 
+  <!-- 네비게이션 -->
+  <nav>
+    <a href="#trailer">Trailer</a>
+    <a href="#gameplay">Gameplay</a>
+    <a href="#description">Description</a>
+    <a href="#features">Features</a>
+    <a href="#download">Download</a>
+    <a href="#team">Team</a>
+    <a href="#audio">Audio</a>
+    <a href="#screenshots">Screenshots</a>
+  </nav>
+
+  <div class="container">
     <header>
       <img src="./Video&image/main.png" alt="Branding">
       <h1>The Dining Room</h1>
-      <p>A fast-food tycoon game – Press Kit</p>
+      <p>Fast-Food Tycoon Game – Press Kit</p>
     </header>
 
-    <section>
-      <h1 id="trailer">Trailer</h1>
+    <section id="trailer">
+      <h1>Trailer</h1>
       <video controls>
         <source src="Video&image/Dining Room Trailer.mp4" type="video/mp4">
       </video>
     </section>
 
-    <section>
-      <h1 id="gameplay-video">Gameplay Videos</h1>
+    <section id="gameplay">
+      <h1>Gameplay Videos</h1>
       <video controls>
         <source src="Video&image/Dash_and_Thief_Trim.mp4" type="video/mp4">
       </video>
@@ -117,78 +216,35 @@
       </video>
     </section>
 
-    <section>
-      <h1 id="elevator-pitch">Elevator Pitch</h1>
-      <img src="./Video&image/1.gif" alt="happy">
-      <p>Get the order from the customer, make what they want, and earn money from the customer. Finally become a CEO.</p>
+    <section id="description">
+      <h1>Description</h1>
+      <p>Introducing <strong>"The Dining Room"</strong>, an immersive tycoon game that puts you in the shoes of a fast-food store owner. Prepare yourself for the ultimate challenge of running a successful establishment where you’ll experience firsthand just how demanding it can be.</p>
+      <p>Get ready to whip up delicious burgers and tantalizing side menus for the ever-hungry customers who flock to your door. As you serve your culinary masterpieces, watch the profits roll in and use them strategically to enhance your skills and unlock a diverse range of ingredients.</p>
+      <p>But beware, the path to success is treacherous! Your ability to manage your customers' satisfaction and maintain a stellar reputation is paramount. With each decision you make, the fate of your store hangs in the balance.</p>
+      <p><strong>"The Dining Room"</strong> offers an authentic and immersive experience where you’ll face the real-life challenges of a fast-food business. Will you thrive or crumble under the pressure? The choice is yours.</p>
     </section>
 
-    <section>
-      <h1 id="description">Description</h1>
-      <p>Introducing <strong>"The Dining Room,"</strong> an immersive tycoon game that puts you in the shoes of a fast-food store owner...</p>
-    </section>
-
-    <section>
-      <h1 id="developer-contact-information">Developer Contact Information</h1>
-      <img src="./Video&image/6.gif" alt="gif">
-      <p><strong>Instagram:</strong></p>
+    <section id="features">
+      <h1>Features</h1>
       <ul>
-        <li><a href="https://www.instagram.com/c_lin_42">@c_lin_42</a></li>
-        <li><a href="https://www.instagram.com/juseung0701">@juseung0701</a></li>
-        <li><a href="https://www.instagram.com/co2xuz1y9">@co2xuz1y9</a></li>
-        <li><a href="https://www.instagram.com/truth0629">@truth0629</a></li>
-      </ul>
-      <p><strong>Email:</strong></p>
-      <ul>
-        <li>kathy020224@gmail.com</li>
-        <li>juseung0701@naver.com</li>
-        <li>shinyj0219@gmail.com</li>
-        <li>truth0600@naver.com</li>
-        <li>ymjgood11@gmail.com</li>
+        <li><strong>Story Mode</strong>
+          <blockquote>15-day campaign with fun cutscenes and progression.</blockquote></li>
+        <li><strong>Infinite Mode</strong>
+          <blockquote>Play endlessly to beat your own records!</blockquote></li>
+        <li><strong>Hand-Drawn Assets</strong>
+          <blockquote>Colorful, cartoon-style graphics that pop.</blockquote></li>
+        <li><strong>Easy Controls</strong>
+          <blockquote>Simple keyboard input, quick to learn.</blockquote></li>
       </ul>
     </section>
 
-    <section>
-      <h1 id="features">Features</h1>
-      <ul>
-        <li><p><strong>Story Mode</strong></p>
-          <blockquote>The story mode provides simple story to make a bigger restaurant with handmade cutscenes...</blockquote>
-        </li>
-        <li><p><strong>Infinite Mode</strong></p>
-          <blockquote>Enjoy infinitely continued burger tycoon gameplay. Reach a highest record!</blockquote>
-        </li>
-        <li><p><strong>Impressive Hand-Drawn Assets</strong></p>
-          <blockquote>All the assets created by an Art Lead offer atmosphere-matching graphics.</blockquote>
-        </li>
-        <li><p><strong>Simple and Intuitive Controls</strong></p>
-          <blockquote>Fast and easy to learn keyboard controls for everyone.</blockquote>
-        </li>
-      </ul>
-    </section>
-
-    <section>
-      <h1 id="platforms-and-planned-release-dates">Platforms & Release</h1>
-      <p><strong>Platforms:</strong> Windows</p>
-      <p><strong>System Requirements:</strong></p>
-      <ul>
-        <li>Intel Quad-Core CPU or higher</li>
-        <li>4.00GB RAM or higher</li>
-        <li>64-bit Operating System</li>
-      </ul>
-    </section>
-
-    <section>
-      <h1 id="price">Price</h1>
-      <p>$10</p>
-    </section>
-
-    <section>
-      <h1 id="link-to-get-game-or-demo-or-how-to-get-a-key">Download</h1>
+    <section id="download">
+      <h1>Download</h1>
       <a href="https://drive.google.com/file/d/1k85_ayan7rRqN0FRXVTZAdXZ3_sjHHlq/view?usp=sharing" class="btn">Get the Game</a>
     </section>
 
-    <section>
-      <h1 id="developer-team">Developer Team</h1>
+    <section id="team">
+      <h1>Developer Team</h1>
       <ul>
         <li>Minki Cho: Producer</li>
         <li>MinJae Yu: Technical Lead</li>
@@ -198,8 +254,8 @@
       </ul>
     </section>
 
-    <section>
-      <h1 id="audio">Audio</h1>
+    <section id="audio">
+      <h1>Audio</h1>
       <audio controls>
         <source src="./Sounds/The_Dining_Room_stage.wav" type="audio/mpeg">
       </audio>
@@ -219,11 +275,10 @@
 
     <hr>
 
-    <section>
-      <h1 id="screenshot">Screenshots</h1>
-      <img src="./Video&image/all.png" alt="image">
+    <section id="screenshots">
+      <h1>Screenshots</h1>
+      <img src="./Video&image/all.png" alt="game screenshots">
     </section>
-
   </div>
 </body>
 </html>
